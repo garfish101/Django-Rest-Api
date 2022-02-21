@@ -8,6 +8,8 @@ from profile_api import models
 from rest_framework.authentication import TokenAuthentication
 from profile_api import permissions
 from rest_framework import filters
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.settings import api_settings
 
 class HelloApiView(APIView):
     """Test Api View"""
@@ -103,6 +105,10 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     search_fields = ('name', 'email')
 
     
+class UserLoginApiView(ObtainAuthToken):
+    """Handle creating auth tokens"""
+    renderer_classes= api_settings.DEFAULT_RENDERER_CLASSES
+
 
     
 
