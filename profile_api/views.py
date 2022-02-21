@@ -82,22 +82,27 @@ class HelloViewSet(viewsets.ViewSet):
 
     def retrive(self,request, pk=None):
         """Handles getting an objects by its id"""
+        
         return Response({"http_method":"GET"})
 
     def update(self,request,pk=None):
         """Handles updating of an objects"""
+
         return Response({"http_method": "PUT"})
 
     def partial_update(self, request,pk=None):
         """Handles partially updating an objects """
+
         return Response({"http_method":"PATCH"})
 
     def destroy(self,request,pk=None):
         """Delete's a objects by its Id"""
+
         return Response({"http_method":"DELETE"})
 
 class UserProfileViewSet(viewsets.ModelViewSet):
     """Handles creating and updating user profiles"""
+
     serializer_class = serializers.UserProfileSerialiser
     queryset = models.UserProfile.objects.all()
     authentication_classes = (TokenAuthentication,)
