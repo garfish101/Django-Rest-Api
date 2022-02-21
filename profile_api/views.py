@@ -4,6 +4,9 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
 from . import serializers
+from profile_api import models
+from rest_framework.authentication import TokenAuthentication
+from profile_api import permissions
 
 class HelloApiView(APIView):
     """Test Api View"""
@@ -84,10 +87,20 @@ class HelloViewSet(viewsets.ViewSet):
     def partial_update(self, request,pk=None):
         """Handles partially updating an objects """
         return Response({"http_method":"PATCH"})
+
     def destroy(self,request,pk=None):
         """Delete's a objects by its Id"""
         return Response({"http_method":"DELETE"})
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    """Handles creating and updating user profiles"""
+    serializer_class = serializers.UserProfileSerialiser
+    queryset = models.UserProfile.objects.all()
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (permissions.UpdateOwnProfile,)
+
     
+
     
 
 
