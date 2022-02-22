@@ -4,7 +4,7 @@ from django.urls import path,include
 from profile_api import views
 
 router = DefaultRouter()
-router.register("hello-viewset", views.HelloViewSet, base_name="hello-viewset")
+router.register("hello-viewset", views.HelloViewSet, basename="hello-viewset")
 router.register("profile-viewset",views.UserProfileViewSet)
 router.register("feed",views.UserProfileFeedViewSet)
 urlpatterns=[
